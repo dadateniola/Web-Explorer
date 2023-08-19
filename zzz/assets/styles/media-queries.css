@@ -1,0 +1,77 @@
+/* Minimim Width */
+@media (min-width: 700px) {
+    :root {
+        --columns: 2;
+    }
+}
+
+@media (min-width: 1024px) {
+    :root {
+        --columns: 3;
+    }
+}
+
+@media (min-width: 1440px) {
+    :root {
+        --columns: 4;
+    }
+}
+
+/* Maximun Width */
+@media (max-width: 1024px) {
+    .navigator .headers>* {
+        font-size: 0.8em
+    }
+
+    .navigator .head h1 {
+        font-size: 2em;
+    } 
+
+    .menu-item:nth-child(2) button {
+        font-size: 0.7em;
+    }
+}
+
+@media (max-width: 700px) {
+    .navigator .headers-box {
+        margin-bottom: 10px;
+    }
+
+    .head .search {
+        display: none;
+    }
+
+    .menu-item .search {
+        display: flex;
+    }
+
+    .menu {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 450px) {
+    .navigator .headers {
+        gap: 4px;
+    }
+
+    .navigator .head h1 {
+        font-size: 1.6em;
+    }
+
+    .tool-box {
+        width: calc(100% - 7px);
+        padding: 8px;
+        gap: 5px;
+        justify-content: space-between;
+    }
+
+    .tool {
+        width: 40px;
+        height: 40px;
+    }
+
+    .content {
+        padding: 25px 15px;
+    }
+}

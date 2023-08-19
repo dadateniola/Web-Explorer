@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Explorer</title>
+
+    <link rel="icon" type="image/png" sizes="96x96" href="/images/favicon/fe-96.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/fe-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/fe-16.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="/styles/app.css">
+    <link rel="stylesheet" href="/styles/media-queries.css">
+</head>
+
+<body>
+
+    <div class="loader-box">
+        <div class="loader"></div>
+    </div>
+
+    <div class="alert-box">
+        <div class="alert error" 
+            <% if (files?.alert) { %>
+                data-fe-message="<%= files?.alert %>"
+            <% } %>
+        ></div>
+        <div class="alert-action">
+            <button><i class="fa-solid fa-arrow-left"></i></button>
+            <button id="alert-close"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+    </div>
+
+    <div class="modal">
+        <div class="modal-box">
+            <div class="modal-head">
+                <h1>alert heading</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="tool-box">
+        <div class="tool" data-fe-tooltip="select">
+            <img src="/images/icons/Select Cursor.png" alt="icon" class="icon">
+        </div>
+        <div class="tool" data-fe-tooltip="copy">
+            <img src="/images/icons/Copy.png" alt="icon" class="icon">
+        </div>
+        <div class="tool" data-fe-tooltip="paste">
+            <img src="/images/icons/Paste.png" alt="icon" class="icon">
+        </div>
+        <div class="tool" data-fe-return data-fe-tooltip="go back">
+            <img src="/images/icons/Return.png" alt="icon" class="icon">
+        </div>
+        <div class="tool" data-fe-tooltip="delete">
+            <img src="/images/icons/Waste.png" alt="icon" class="icon">
+        </div>
+    </div>
+
+    <main class="container">
+        <button class="menu-open">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <section class="content">
+            <div class="navigator">
+                <div class="headers-box">
+                    <div class="headers"><%- route?.html %></div>
+                </div>
+                <div class="head">
+                    <h1 class="transparent"><%= route.head %></h1>
+                    <div class="search">
+                        <img src="/images/icons/Search.png" alt="" width="22">
+                        <input type="text" placeholder="Search...">
+                    </div>
+                </div>
+            </div>
+            <div class="items" >
+                <% for(const item in files) { %>
+                    <% if(!files[item].length) continue; %>
+                    <% if(item == 'alert') continue; %>
+                    <% if (item == 'error') { %>
+                        <div class="error">
+                            <h1><%= files[item] %></h1>
+                        </div>
+                    <% } else { %>
+                        <div class="items-head">
+                            <div class="overlay"></div>
+                            <h1><%= item %>s</h1>
+                        </div>
+                        <div class="items-box">
+                            <% for( let i = 0; i < files[item].length; i++ ) { %>
+                                <% const filePath = `${route.staticPath}/${files[item][i]}` %>
+                                <div class="item">
+                                    <div class="overlay"></div>
+                                    <div class="item-img img-here">
+                                        <% if (item == 'image') { %>
+                                            <a href="<%= filePath %>" target="_blank"><img src="<%= filePath %>" alt="item"></a>
+                                        <% } else if (item == 'video') { %>
+                                            <video src="<%= filePath %>" controls></video>
+                                        <% } else { %>
+                                            <div class="item-cont" <% if (item == 'folder') { %>
+                                             data-fe-update-all
+                                             data-path='<%= files[item][i] %>'
+                                            <% } %>>
+                                                <i class="fa-solid fa-<%= item %>"></i>
+                                            </div>
+                                        <% } %>
+                                    </div>
+                                    <p title="<%= files[item][i] %>"><%= files[item][i] %></p>
+                                </div>
+                            <% } %>
+                        </div>
+                    <% } %>
+                <% } %>
+            </div>
+        </section>
+        <div class="menu-box">
+            <section class="menu">
+                <div class="menu-item">
+                    <button class="menu-close">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div class="menu-item">
+                    <div class="search">
+                        <img src="/images/icons/Search.png" alt="" width="22">
+                        <input type="text" placeholder="Search...">
+                    </div>
+                    <button>change current directory</button>
+                    <button>setup project file</button>
+                    <button>change file names</button>
+                    <button>re-arrange files</button>
+                </div>
+                <div class="menu-item">
+                    <div class="help">
+                        <button>
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                        </button>
+                        <button>
+                            <i class="fa-solid fa-question"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="/scripts/animation.js"></script>
+    <script src="/scripts/app-front.js"></script>
+
+</body>
+
+</html>

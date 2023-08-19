@@ -1,0 +1,198 @@
+<!-- ------------------------------------------------------- -->
+
+<!-- Default HTML setting -->
+<!-- HTML start -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Meta start -->
+    <meta name="description" content="** SITE SDESCRIPTION HERE **" />
+    <meta property="og:title" content="** SITE TITLE HERE **" />
+    <meta property="og:description" content="** SITE SDESCRIPTION HERE **" />
+    <meta property="og:image" content="** SITE IMAGE HERE **" />
+    <meta property="og:site_name" content="Dada Teniola" />
+    <meta property="og:locale" content="en" />
+    <meta property="og:type" content="website" />
+    <meta name="google" content="notranslate" />
+    <meta property="og:locale" content="en" />
+    <!-- Meta end -->
+
+    <title>Title Here</title>
+
+    <!-- Favicon start -->
+    <link rel="icon" type="image/png" sizes="96x96" href="">
+    <link rel="icon" type="image/png" sizes="32x32" href="">
+    <link rel="icon" type="image/png" sizes="16x16" href="">
+    <!-- Favicon end -->
+
+    <!-- CSS links start -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="media-queries.css">
+    <!-- CSS links end -->
+</head>
+
+<body>
+    <!-- HTML content here -->
+</body>
+
+</html>
+<!-- HTML end -->
+
+<!-- ------------------------------------------------------- -->
+
+<!-- ------------------------------------------------------- -->
+
+<!-- Common CSS setting -->
+<!-- CSS start -->
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        width: 100%;
+        font-family: 'Courier New', sans-serif;
+    }
+
+    :root {
+        --dark: #000;
+        --light: #fff;
+
+        --padding: 40px;
+    }
+
+    /* SrcollBar */
+    ::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        width: 100%;
+        background-color: rgb(43, 178, 133);
+        border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(var(--green-val), 1);
+    }
+
+    /* Common */
+    a {
+        text-decoration: none;
+        color: var(--dark);
+    }
+
+    .img-here img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .full {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+</style>
+<!-- CSS end -->
+
+<!-- Start CSS setting -->
+<!-- START CSS start -->
+<style>
+    .hero {
+        width: 100%;
+    }
+</style>
+<!-- START CSS end -->
+
+<!-- ------------------------------------------------------- -->
+
+<!-- ------------------------------------------------------- -->
+
+<!-- Default JS setting -->
+<!-- JS start -->
+<script>
+    //Parameters
+    const select = (e) => document.querySelector(e);
+    const selectAll = (e) => document.querySelectorAll(e);
+    const selectWith = (p, e) => p.querySelector(e);
+    const selectAllWith = (p, e) => p.querySelectorAll(e);
+    const create = (e) => document.createElement(e);
+    const root = (e) => getComputedStyle(select(':root')).getPropertyValue(e);
+
+    class PageSetup {
+        constructor(params = {}) {
+            Object.assign(this, params)
+        }
+    }
+</script>
+<!-- JS end -->
+
+<!-- Controller setting -->
+<!-- USERCON JS start -->
+<script>
+    const { Router } = require('express');
+
+    const router = Router();
+
+    router.get('/', (req, res) => {
+        res.render('app')
+    })
+
+    module.exports = router;
+</script>
+<!-- USERCON JS end -->
+
+<!-- Methods setting -->
+<!-- METHODS JS start -->
+<script>
+    const path = require('path');
+    const fs = require('fs').promises;
+
+    class Methods {
+        constructor(params = {}) {
+            Object.assign(this, params);
+        }
+    }
+
+    module.exports = Methods;
+</script>
+<!-- METHODS JS end -->
+
+<!-- Server setting -->
+<!-- SERVER JS start -->
+<script>
+    const express = require('express');
+    const path = require('path');
+    const controller = require('./methods/controller');
+
+    const app = express();
+    const port = 5000;
+
+    // app.use(express.urlencoded({ extended: true }))
+    // app.use(express.json())
+
+    // app.use(express.static(path.join(__dirname, 'Websites')));
+
+    app.set('view engine', 'ejs');
+    app.set('views', path.join(__dirname, 'pages'));
+
+    // app.use(controller)
+
+    app.listen(port, err => console.log(err || `Visit http://localhost:${port}/`));
+</script>
+<!-- SERVER JS end -->
+
+<!-- ------------------------------------------------------- -->
